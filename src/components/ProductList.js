@@ -1,64 +1,58 @@
 import React,{Component} from 'react';
+import store from '../store';
 
 class ProductList extends Component{
+
+    constructor(){
+        super();
+        this.state = {
+            products:[{
+                id:1,
+                imagen : 'https://www.abcdin.cl/wcsstore/ABCDIN/images/licuadoras/859598F13.jpg',
+                product:'Blender',
+                price : 1234
+            },{
+                id:2,
+                imagen : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe14ZOVtnuJphNOJE4CmqcQSeKRG6ad9k48mKWQ88SJHYUGZPz',
+                product:'Refrigerator',
+                price : 233242
+            }]
+        }
+    }
     render(){
         return(
             <div className="col-md-9" style={{marginTop:10}}>
                 <div class="row">
+                    {this.state.products.map(product=>
                     <div class="col-md-4">
                         <div class="card-deck">
                             <div class="card text-center">
                                 <div class="card-block">
-                                    <h4 class="card-title">Producto 1</h4>
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg6zTQtZblua_z_8UUWsDjEj5vbOEt-RNOisCUia3PI0rqCfSW" alt="..." class="img-thumbnail"/>
+                                    <h4 class="card-title">{product.product}</h4>
+                                    <img src={product.imagen} style={{width:200,height:200}} alt="..." class="img-thumbnail"/>
                                     <p class="card-text">
-                                        Apply for parking permit<br />
+                                        Product in promotion<br />
                                     </p>
-                                    <center><strong>$455</strong></center>
+                                    <center><strong>${product.price}</strong></center>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="button" class="btn btn-primary btn-lg">Agregar</button>
+                                    <button type="button" onClick={()=>this.addToCart(product)} class="btn btn-primary btn-lg">Agregar</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card-deck">
-                            <div class="card text-center">
-                                <div class="card-block">
-                                    <h4 class="card-title">Producto 1</h4>
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg6zTQtZblua_z_8UUWsDjEj5vbOEt-RNOisCUia3PI0rqCfSW" alt="..." class="img-thumbnail"/>
-                                    <p class="card-text">
-                                        Apply for parking permit<br />
-                                    </p>
-                                    <center><strong>$455</strong></center>
-                                </div>
-                                <div class="card-footer">
-                                    <button type="button" class="btn btn-primary btn-lg">Agregar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card-deck">
-                            <div class="card text-center">
-                                <div class="card-block">
-                                    <h4 class="card-title">Producto 1</h4>
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg6zTQtZblua_z_8UUWsDjEj5vbOEt-RNOisCUia3PI0rqCfSW" alt="..." class="img-thumbnail"/>
-                                    <p class="card-text">
-                                        Apply for parking permit<br />
-                                    </p>
-                                    <center><strong>$455</strong></center>
-                                </div>
-                                <div class="card-footer">
-                                    <button type="button" class="btn btn-primary btn-lg">Agregar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </div>      
+                    )}
                 </div>
             </div>
         )
+    }
+
+
+    addToCart(product){
+        store.dispatch({
+            type:'ADD_TO_CART',
+            product
+        })
     }
 }
 
