@@ -3,7 +3,6 @@ import store from '../store';
 import {addToCart} from '../actionCreators';
 
 
-
 class ProductList extends Component{
 
     constructor(){
@@ -27,7 +26,7 @@ class ProductList extends Component{
             <div className="col-md-9" style={{marginTop:10}}>
                 <div class="row">
                     {this.state.products.map(product=>
-                    <div class="col-md-4">
+                    <div class="col-md-4" key={product.id}>
                         <div class="card-deck">
                             <div class="card text-center">
                                 <div class="card-block">
