@@ -1,5 +1,8 @@
 import React,{Component} from 'react';
 import store from '../store';
+import {addToCart} from '../actionCreators';
+
+
 
 class ProductList extends Component{
 
@@ -49,10 +52,7 @@ class ProductList extends Component{
 
 
     addToCart(product){
-        store.dispatch({
-            type:'ADD_TO_CART',
-            product
-        })
+        store.dispatch(addToCart(product))
     }
 }
 
