@@ -18,14 +18,14 @@ const ShoppingCart = ({cart,removeFromCart})=>{
                 <tbody>
                     {cart.map(product=>
                         <tr key={product.id}>
-                            <td>{product.product}</td>
-                            <td><strong style={{color:'green'}}>${product.price}</strong></td>
+                            <td>{product.title}</td>
+                            <td><strong style={{color:'green'}}>${product.id}</strong></td>
                             <td><button type="button" class="btn btn-danger" onClick={()=>removeFromCart(product)}>X</button></td>
                         </tr>
                     )}
                 </tbody>
             </table>
-            <center>TOTAL <span style={{color:'green',fontWeight:'bold'}}>${cart.reduce((sum,product)=>sum + product.price,0)}</span></center>
+            <center>TOTAL <span style={{color:'green',fontWeight:'bold'}}>${cart.reduce((sum,product)=>sum + product.id,0)}</span></center>
         </div>
     )
 }
